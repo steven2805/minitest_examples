@@ -6,9 +6,12 @@ def total_cash(total_cash)
   return total_cash[:admin][:total_cash]
 end 
 
-# def add_or_remove_cash_add(pet_shop, value)
-#   return pet_shop[:admin][:total_cash] + value 
-# end 
+def add_or_remove_cash(pet_shop,num)
+  cash = num + pet_shop[:admin][:total_cash]
+  return pet_shop[:admin][:total_cash] = cash
+
+end
+
 
 def pets_sold(pets_sold)
   return pets_sold[:admin][:pets_sold]
@@ -22,26 +25,36 @@ def stock_count(pets_hash)
   return pets_hash[:pets].count
 end
 
-def all_all_pets_by_breed_found(pets_hash,name)
-  result = 0
-  for pets_hash[:pets_shop][:pets][:pet_type].eql? name 
-    result += 1
-  end 
-return result
-end 
+
+def pets_by_breed(pet_shop,specific)
+  array = []
+  for pet in pet_shop[:pets]
+
+   if pet[:breed] == specific
+    array.push(pet)
+  end
+end
+return array
+end
 
 
 
-    #   total = 0
-    #   for person in people
-    #     total += person[:monies]
-    #   end
-    #   return total
-    # end
 
 
 
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
