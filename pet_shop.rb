@@ -12,7 +12,6 @@ def add_or_remove_cash(pet_shop,num)
 
 end
 
-
 def pets_sold(pets_sold)
   return pets_sold[:admin][:pets_sold]
 end 
@@ -26,16 +25,7 @@ def stock_count(pets_hash)
 end
 
 
-def pets_by_breed(pet_shop,specific)
-  array = []
-  for pet in pet_shop[:pets]
 
-   if pet[:breed] == specific
-    array.push(pet)
-  end
-end
-return array
-end
 
 
 
