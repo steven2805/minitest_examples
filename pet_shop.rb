@@ -27,7 +27,6 @@ end
 def pets_by_breed(pet_shop,specific)
   array = []
   for pet in pet_shop[:pets]
-
    if pet[:breed] == specific
     array.push(pet)
   end
@@ -37,6 +36,36 @@ end
 
 
 
+def find_pet_by_name(pet_shop,name)
+  for pet in pet_shop[:pets]
+    if pet[:name] == name
+    found = pet
+    end
+  end
+  return found 
+end
+
+def remove_pet_by_name(pet_shop,name)
+  # for pet in pet_shop[:pets]
+  #   if pet[:name] == name
+  #     pet.delete
+  #   end
+  # end
+
+  pet_shop[:pets].each_with_index do |pet, index|
+    if pet[:name] == name
+      pet_shop[:pets].delete_at(index)
+    end
+  end
+end 
+
+def add_pet_to_stock(pet_sold,new_pet)
+  pet_sold[:pets] << new_pet
+end 
+
+def customer_pet_count(customers)
+  return customers[:pets].count
+end
 
 
 
