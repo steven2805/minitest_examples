@@ -4,8 +4,8 @@ end
 
 def total_cash(total_cash)
   return total_cash[:admin][:total_cash]
-end 
 
+end 
 def add_or_remove_cash(pet_shop,num)
   cash = num + pet_shop[:admin][:total_cash]
   return pet_shop[:admin][:total_cash] = cash
@@ -42,7 +42,7 @@ def find_pet_by_name(pet_shop,name)
     found = pet
     end
   end
-  return found 
+  return found
 end
 
 def remove_pet_by_name(pet_shop,name)
@@ -76,6 +76,20 @@ end
 def add_pet_to_customer(customer,pet)
   customer[:pets] << pet 
 end 
+
+def customer_can_afford_pet(customer,pet)
+  return customer[:cash] > pet[:price]
+
+end
+
+def sell_pet_to_customer(pet_shop,pet,customer)
+  customer[:cash] -= pet[:price]
+  pet_shop[:admin][:total_cash] += pet[:price]
+  remove_pet_by_name(pet_shop,pet)
+  add_pet_to_customer(customer,pet)
+  increase_pets_sold(pet_shop,1)
+
+end
 
 
 
