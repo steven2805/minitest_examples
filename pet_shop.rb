@@ -46,20 +46,26 @@ def find_pet_by_name(pet_shop,name)
 end
 
 def remove_pet_by_name(pet_shop,name)
-  # for pet in pet_shop[:pets]
-  #   if pet[:name] == name
-  #     pet.delete
-  #   end
-  # end
+#   for pet in pet_shop[:pets]
+#  if pet[:name] == name
+# found = pet.index 
+# pet_shop[found].delete
+# end 
+# end
+# end
+
 
   pet_shop[:pets].each_with_index do |pet, index|
     if pet[:name] == name
       pet_shop[:pets].delete_at(index)
     end
   end
-end 
+end
+
 
 def add_pet_to_stock(pet_sold,new_pet)
+  # pet_sold.concat(new_pet)
+
   pet_sold[:pets] << new_pet
 end 
 
@@ -67,6 +73,9 @@ def customer_pet_count(customers)
   return customers[:pets].count
 end
 
+def add_pet_to_customer(customer,pet)
+  customer[:pets] << pet 
+end 
 
 
 
