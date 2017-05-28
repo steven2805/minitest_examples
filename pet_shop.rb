@@ -37,12 +37,13 @@ end
 
 
 def find_pet_by_name(pet_shop,name)
+  @found
   for pet in pet_shop[:pets]
     if pet[:name] == name
-    found = pet
+    @found = pet
     end
   end
-  return found
+  return @found
 end
 
 def remove_pet_by_name(pet_shop,name)
@@ -83,12 +84,16 @@ def customer_can_afford_pet(customer,pet)
 end
 
 def sell_pet_to_customer(pet_shop,pet,customer)
+  find_pet_by_name(pet_shop,pet)
+  if @found.nil? == true 
+  return
+else
   customer[:cash] -= pet[:price]
   pet_shop[:admin][:total_cash] += pet[:price]
   remove_pet_by_name(pet_shop,pet)
   add_pet_to_customer(customer,pet)
   increase_pets_sold(pet_shop,1)
-
+end 
 end
 
 
