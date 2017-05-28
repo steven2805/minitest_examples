@@ -4,12 +4,11 @@ end
 
 def total_cash(total_cash)
   return total_cash[:admin][:total_cash]
-
 end 
+
 def add_or_remove_cash(pet_shop,num)
   cash = num + pet_shop[:admin][:total_cash]
   return pet_shop[:admin][:total_cash] = cash
-
 end
 
 def pets_sold(pets_sold)
@@ -34,30 +33,19 @@ end
 return array
 end
 
-
-
 def find_pet_by_name(pet_shop,name)
   @found
-  for pet in pet_shop[:pets]
+  for pet in pet_shop[:pets] do
     if pet[:name] == name
-    @found = pet
+      @found = pet
     end
   end
   return @found
 end
 
 def remove_pet_by_name(pet_shop,name)
-#   for pet in pet_shop[:pets]
-#  if pet[:name] == name
-# found = pet.index 
-# pet_shop[found].delete
-# end 
-# end
-# end
-
-
   pet_shop[:pets].each_with_index do |pet, index|
-    if pet[:name] == name
+    if pet[:name] == name 
       pet_shop[:pets].delete_at(index)
     end
   end
@@ -65,8 +53,7 @@ end
 
 
 def add_pet_to_stock(pet_sold,new_pet)
-  # pet_sold.concat(new_pet)
-
+  # pet_sold.concat(new_pet) <<<< why doesnt this work 
   pet_sold[:pets] << new_pet
 end 
 
@@ -79,28 +66,24 @@ def add_pet_to_customer(customer,pet)
 end 
 
 def customer_can_afford_pet(customer,pet)
-  return customer[:cash] > pet[:price]
-
+  @cash = customer[:cash] > pet[:price]
+  return @cash
 end
 
 def sell_pet_to_customer(pet_shop,pet,customer)
   find_pet_by_name(pet_shop,pet)
-  if @found.nil? == true 
-  return
-else
-  customer[:cash] -= pet[:price]
-  pet_shop[:admin][:total_cash] += pet[:price]
-  remove_pet_by_name(pet_shop,pet)
-  add_pet_to_customer(customer,pet)
-  increase_pets_sold(pet_shop,1)
+  if (@found.nil? == true) #|| (@cash == false)
+    return
+  else
+    if customer_can_afford_pet(customer,pet)
+      customer[:cash] -= pet[:price]
+      pet_shop[:admin][:total_cash] += pet[:price]
+      remove_pet_by_name(pet_shop,pet)
+      add_pet_to_customer(customer,pet)
+      increase_pets_sold(pet_shop,1)
+    end 
+  end
 end 
-end
-
-
-
-
-
-
 
 
 
